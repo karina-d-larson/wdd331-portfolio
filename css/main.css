@@ -1,0 +1,66 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-bg: #f4f6f8;
+    --color-text: #1e293b;
+    --color-primary: #006eb6;
+    --color-primary-hover: #004f7f;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --font-body: system-ui, -apple-system, sans-serif;
+    --max-width: 40rem;
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.35rem;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    line-height: 1.6;
+    padding: var(--space-lg);
+}
+
+a {
+    color: var(--color-primary);
+}
+
+a:hover {
+    color: var(--color-primary-hover);
+}
+
+main {
+    max-width: var(--max-width);
+    margin-inline: auto;
+}
+
+.intro {
+    margin-bottom: var(--space-lg);
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+    line-height: 1.2;
+    margin-bottom: var(--space-md);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+    line-height: 1.3;
+    margin-bottom: var(--space-sm);
+}
+
+p {
+    margin-bottom: var(--space-md);
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
