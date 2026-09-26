@@ -12,3 +12,4 @@ Each week new pages are added and styles updated as I work through the course as
 ## Pages
 
 - [Home](index.html)
+- [Custom Properties and Nesting](unit-1/custom-properties/index.html)
