@@ -13,3 +13,4 @@ Each week new pages are added and styles updated as I work through the course as
 
 - [Home](index.html)
 - [Custom Properties and Nesting](unit-1/custom-properties/index.html)
+- [Layered Components](unit-2/layered-components/index.html)
