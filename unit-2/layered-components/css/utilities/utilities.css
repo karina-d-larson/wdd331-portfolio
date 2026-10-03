@@ -1,0 +1,27 @@
+/* Utility classes: single-purpose helpers.
+   These live in the last layer so they override components
+   by layer order without needing !important. */
+
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: var(--color-text-muted);
+}
+
+.stack-sm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.stack-md {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.full-width {
+    width: 100%;
+}
