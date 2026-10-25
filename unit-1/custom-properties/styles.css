@@ -1,13 +1,6 @@
 /* ===================== TOKENS ==================== */
 :root {
-    --color-bg: #F4F7F8;
-    --color-surface: #FFFFFF;
-    --color-text: #24343D;
-    --color-text-muted: #596B75;
-    --color-primary: #005175;
-    --color-primary-hover: #003C57;
-    --color-border: #DCE5E9;
-    --color-tag-bg: #E4F0F5;
+    --color-tag-bg: color-mix(in oklch, var(--color-accent) 10%, var(--color-surface));
 
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
@@ -111,7 +104,7 @@ a {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-card);
     padding: var(--space-lg);
-    box-shadow: var(--shadow-card, 0 2px 8px rgb(0 0 0 / 0.06));
+    box-shadow: var(--shadow-md);
 
     &:hover {
         border-color: var(--color-primary);

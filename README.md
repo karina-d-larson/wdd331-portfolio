@@ -25,7 +25,8 @@ css/
 │   ├── elements.css
 │   └── reset.css
 ├── components/
-│   └── assignment-cards.css
+│   ├── assignment-cards.css
+│   └── theme-toggle.css
 ├── layout/
 │   └── primary.css
 ├── tokens/
@@ -43,6 +44,17 @@ css/
 - `utilities` — small helper classes when needed
 
 `css/main.css` declares the cascade layer order and imports these source files.
+
+## Color Tokens and Dark Mode
+
+The site supports Light, Dark, and System default.
+
+- Shared color tokens live in `css/tokens/colors.css`.
+- Non-color design tokens live in `css/tokens/variables.css`.
+- Theme toggle styles live in `css/components/theme-toggle.css`.
+- `js/theme-preference.js` restores the choice on load and saves it in `localStorage`.
+
+The palette uses an OKLCH amethyst accent seed, an accent ramp built with `color-mix()`, and semantic colors set with `light-dark()`.
 
 ## Build
 
