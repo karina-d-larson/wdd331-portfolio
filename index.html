@@ -5,11 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Karina Larson's WDD 331R Advanced CSS portfolio. A collection of course assignments and projects from the semester.">
   <title>Karina Larson – Portfolio</title>
+  <script src="js/theme-preference.js"></script>
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   <main>
     <section class="intro">
+      <details class="theme-menu">
+        <summary class="theme-control">
+          <span class="visually-hidden">Color scheme</span>
+        </summary>
+        <div class="theme-extra" role="group" aria-label="Choose color scheme">
+          <label class="theme-control theme-pick" data-theme-pick="light">
+            <input name="theme-preference" type="radio" value="light">
+            <span aria-hidden="true">&#9788;&#65039;</span>
+            <span class="visually-hidden">Light</span>
+          </label>
+
+          <label class="theme-control theme-pick" data-theme-pick="system">
+            <input name="theme-preference" type="radio" value="system">
+            <span aria-hidden="true">&#9881;&#65039;</span>
+            <span class="visually-hidden">System default</span>
+          </label>
+
+          <label class="theme-control theme-pick" data-theme-pick="dark">
+            <input name="theme-preference" type="radio" value="dark">
+            <span aria-hidden="true">&#127766;</span>
+            <span class="visually-hidden">Dark</span>
+          </label>
+        </div>
+      </details>
       <h1>Karina Larson</h1>
       <p class="course-name">WDD 331R Advanced CSS</p>
       <p>This portfolio contains my course assignments and projects.</p>

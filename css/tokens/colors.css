@@ -1,10 +1,69 @@
 :root {
-    --color-bg: #f0f4f7;
-    --color-surface: #ffffff;
-    --color-text: #1a2b36;
-    --color-text-muted: #5a6f7c;
-    --color-primary: #005175;
-    --color-primary-hover: #003c57;
-    --color-border: #c5d0d8;
-    --color-focus: #0077a8;
+    color-scheme: light;
+
+    /* ---- Seeds ---- */
+    --seed-bg: #f4f6f8;
+    --seed-surface: #ffffff;
+    --seed-text: #1e293b;
+    --seed-text-muted: #64748b;
+
+    --seed-accent: oklch(0.55 0.18 300);
+    --seed-accent-hover: color-mix(in oklch, var(--seed-accent) 80%, black);
+
+    --seed-link: var(--seed-accent);
+    --seed-link-hover: var(--seed-accent-hover);
+
+    --seed-border: #e2e8f0;
+    --seed-border-strong: #cbd5e1;
+
+    /* ---- Accent ramp ---- */
+    --accent-200: color-mix(in oklch, var(--seed-accent) 30%, white);
+    --accent-300: color-mix(in oklch, var(--seed-accent) 50%, white);
+    --accent-400: color-mix(in oklch, var(--seed-accent) 75%, white);
+    --accent-500: var(--seed-accent);
+    --accent-600: color-mix(in oklch, var(--seed-accent) 80%, black);
+    --accent-700: color-mix(in oklch, var(--seed-accent) 60%, black);
+    --accent-800: color-mix(in oklch, var(--seed-accent) 40%, black);
+}
+
+html:has(input[name='theme-preference'][value='dark']:checked) {
+    color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    html:has(input[name='theme-preference'][value='system']:checked) {
+        color-scheme: dark;
+    }
+}
+
+:root,
+html {
+    --color-bg: light-dark(var(--seed-bg), oklch(0.18 0.02 300));
+    --color-surface: light-dark(var(--seed-surface), oklch(0.23 0.03 300));
+    --color-text: light-dark(var(--seed-text), oklch(0.96 0.012 300));
+    --color-text-muted: light-dark(var(--seed-text-muted), oklch(0.78 0.03 300));
+    --color-accent: light-dark(var(--seed-accent), oklch(0.78 0.14 300));
+    --color-accent-hover: light-dark(var(--seed-accent-hover), oklch(0.86 0.1 300));
+    --color-link: light-dark(var(--seed-link), oklch(0.8 0.13 300));
+    --color-link-hover: light-dark(var(--seed-link-hover), oklch(0.88 0.09 300));
+    --color-border: light-dark(var(--seed-border), oklch(0.38 0.03 300));
+    --color-border-strong: light-dark(var(--seed-border-strong), oklch(0.48 0.04 300));
+
+    accent-color: var(--color-accent);
+
+    --header-bg: light-dark(var(--seed-surface), oklch(0.21 0.028 300));
+    --header-text: light-dark(var(--seed-text), oklch(0.96 0.012 300));
+    --theme-toggle-bg: light-dark(var(--seed-surface), oklch(0.26 0.035 300));
+    --theme-toggle-border: light-dark(var(--seed-border-strong), oklch(0.45 0.04 300));
+    --theme-toggle-bg-hover: light-dark(var(--accent-200), oklch(0.32 0.06 300));
+    --theme-toggle-border-hover: light-dark(var(--accent-500), oklch(0.72 0.12 300));
+    --shadow-color: light-dark(oklch(0.2 0.03 300 / 0.16), oklch(0.08 0.02 300 / 0.55));
+    --shadow-sm: 0 1px 2px var(--shadow-color);
+    --shadow-md: 0 4px 12px var(--shadow-color);
+
+    /* Legacy color aliases */
+    --color-primary: var(--color-accent);
+    --color-primary-hover: var(--color-accent-hover);
+    --color-focus: var(--color-accent);
+    --color-background: var(--color-bg);
 }

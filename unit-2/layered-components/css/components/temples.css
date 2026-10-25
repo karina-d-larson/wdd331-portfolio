@@ -43,13 +43,13 @@
         letter-spacing: 0.02em;
 
         &.open {
-            background-color: color-mix(in srgb, var(--color-accent) 16%, var(--color-surface));
+            background-color: color-mix(in srgb, var(--color-accent) 10%, var(--color-surface));
             border-color: var(--color-accent);
             color: var(--color-primary);
         }
 
         &.construction {
-            background-color: color-mix(in srgb, var(--color-text-muted) 12%, var(--color-surface));
+            background-color: color-mix(in srgb, var(--color-text-muted) 4%, var(--color-surface));
             border-color: var(--color-border);
             color: var(--color-text-muted);
             border-style: dashed;
