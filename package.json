@@ -1,0 +1,24 @@
+{
+  "name": "wdd331-portfolio-1",
+  "version": "1.0.0",
+  "description": "**Student:** Karina Larson   **Semester:** Fall 2026   **Live Site:** [View Site](https://karina-d-larson.github.io/wdd331-portfolio/)",
+  "main": "index.js",
+  "scripts": {
+    "build": "lightningcss --bundle --minify css/main.css -o dist/styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karina-d-larson/wdd331-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/karina-d-larson/wdd331-portfolio/issues"
+  },
+  "homepage": "https://github.com/karina-d-larson/wdd331-portfolio#readme",
+  "devDependencies": {
+    "lightningcss-cli": "^1.33.0"
+  }
+}
