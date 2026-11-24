@@ -41,6 +41,23 @@
     --font-size-h2: 1.35rem;
     --font-size-h3: 1.15rem;
 
-    /* Card shadow uses the theme-aware shadow from colors.css */
+    /*
+     * Elevation aliases and effect tokens.
+     * --shadow-sm / --shadow-md / --shadow-color remain theme-aware
+     * values defined in colors.css.
+     */
     --shadow-card: var(--shadow-md);
+    --shadow-raised: var(--shadow-md);
+    --shadow-lg:
+        0 4px 8px color-mix(in oklch, var(--shadow-color) 85%, transparent),
+        0 12px 24px var(--shadow-color),
+        0 20px 40px color-mix(in oklch, var(--shadow-color) 70%, transparent);
+
+    /* Visual Effects assignment */
+    --blur-glass: 12px;
+    --saturate-glass: 140%;
+    --filter-muted: grayscale(0.7);
+    --filter-active: grayscale(0);
+    --transition-effects: 0.25s ease;
+    --text-shadow-hero: 0 1px 2px var(--shadow-color), 0 4px 16px var(--shadow-color);
 }
