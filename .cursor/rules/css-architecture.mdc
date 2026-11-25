@@ -13,6 +13,7 @@ alwaysApply: true
 - Keep cascade layers: `tokens → base → layout → components → utilities`.
 - Reuse shared tokens, shell/layout, nav, cards, buttons, and forms; do not duplicate them.
 - Keep topic-specific styles on their own pages/sheets only.
+- When additional colors are needed, use the shared primary (`--color-accent`) and secondary (`--color-secondary-accent`) accent tokens; prefer existing semantic tokens and calculated color ramps over hardcoded colors. Do not introduce new color palettes unnecessarily. The secondary accent is an available option, not required in every demo.
 
 ## New Team Teaching demos
 

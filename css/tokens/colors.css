@@ -10,6 +10,11 @@
     --seed-accent: oklch(0.55 0.18 300);
     --seed-accent-hover: color-mix(in oklch, var(--seed-accent) 80%, black);
 
+    /* Secondary teal accent: light seed derived from dark #00A9A5 (oklch ~0.66 0.11 192)
+       using the same L/C shifts as the primary accent (dark is +0.23 L, −0.04 C). */
+    --seed-secondary-accent: oklch(0.43 0.15 192);
+    --seed-secondary-accent-hover: color-mix(in oklch, var(--seed-secondary-accent) 80%, black);
+
     --seed-link: var(--seed-accent);
     --seed-link-hover: var(--seed-accent-hover);
 
@@ -24,6 +29,15 @@
     --accent-600: color-mix(in oklch, var(--seed-accent) 80%, black);
     --accent-700: color-mix(in oklch, var(--seed-accent) 60%, black);
     --accent-800: color-mix(in oklch, var(--seed-accent) 40%, black);
+
+    /* ---- Secondary accent ramp ---- */
+    --secondary-accent-200: color-mix(in oklch, var(--seed-secondary-accent) 30%, white);
+    --secondary-accent-300: color-mix(in oklch, var(--seed-secondary-accent) 50%, white);
+    --secondary-accent-400: color-mix(in oklch, var(--seed-secondary-accent) 75%, white);
+    --secondary-accent-500: var(--seed-secondary-accent);
+    --secondary-accent-600: color-mix(in oklch, var(--seed-secondary-accent) 80%, black);
+    --secondary-accent-700: color-mix(in oklch, var(--seed-secondary-accent) 60%, black);
+    --secondary-accent-800: color-mix(in oklch, var(--seed-secondary-accent) 40%, black);
 }
 
 html:has(input[name='theme-preference'][value='dark']:checked) {
@@ -44,6 +58,12 @@ html {
     --color-text-muted: light-dark(var(--seed-text-muted), oklch(0.78 0.03 300));
     --color-accent: light-dark(var(--seed-accent), oklch(0.78 0.14 300));
     --color-accent-hover: light-dark(var(--seed-accent-hover), oklch(0.86 0.1 300));
+    /* Teal secondary accent for supporting highlights; unused by components yet. */
+    --color-secondary-accent: light-dark(var(--seed-secondary-accent), oklch(0.66 0.11 192));
+    --color-secondary-accent-hover: light-dark(
+        var(--seed-secondary-accent-hover),
+        oklch(0.74 0.07 192)
+    );
     --color-link: light-dark(var(--seed-link), oklch(0.8 0.13 300));
     --color-link-hover: light-dark(var(--seed-link-hover), oklch(0.88 0.09 300));
     --color-border: light-dark(var(--seed-border), oklch(0.38 0.03 300));
