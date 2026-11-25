@@ -19,6 +19,8 @@ Each week new pages are added and styles updated as I work through the course as
 ## Team Teaching
 
 - [Advanced Gradients and @property](unit-3/gradients-advanced/)
+- [Custom Media Queries](unit-2/custom-media-queries/)
+- [Logical Properties and Writing Modes](unit-4/logical-properties/)
 
 ## CSS Architecture
 
@@ -28,7 +30,8 @@ All authored CSS lives under the root `css/` directory. Pages load shared styles
 css/
 ├── tokens/                 # Shared design tokens
 │   ├── colors.css
-│   └── variables.css
+│   ├── variables.css
+│   └── breakpoints.css     # @custom-media breakpoint aliases (compiled demos)
 ├── base/                   # Reset + element defaults
 │   ├── reset.css
 │   └── elements.css
@@ -49,7 +52,9 @@ css/
 │   ├── visual-effects.css
 │   └── layered-components/
 ├── team-teaching/          # Loaded only by Team Teaching demos
-│   └── gradients-advanced.css
+│   ├── gradients-advanced.css
+│   ├── custom-media-queries.css
+│   └── logical-properties.css
 └── main.css                # Layer order + shared imports
 ```
 
@@ -73,7 +78,17 @@ These sheets keep topic-specific or intentional overrides. They should not resta
 
 ### Team Teaching styles
 
-Demo pages load `css/main.css` plus a sheet under `css/team-teaching/`. Demo HTML lives in the matching unit directory (for example `unit-3/gradients-advanced/`). Demos reuse `.page-shell`, shared navigation, and the theme menu.
+Demo pages load `css/main.css` plus a demo sheet. Authored demo CSS stays under `css/team-teaching/`. Most demos load that authored sheet directly; demos that need Lightning CSS for unsupported features load the compiled output from `dist/` instead. Demo HTML lives in the matching unit directory (for example `unit-3/gradients-advanced/` or `unit-4/logical-properties/`). Demos reuse `.page-shell`, shared navigation, and the theme menu. The Logical Properties demo uses native CSS only—no compilation step.
+
+### Shared content cards (logical properties)
+
+`css/components/cards.css` uses logical block-edge properties for shared `.page-shell` content cards (`margin-block-end`, `margin-block-start`, `padding-block-start`, and `border-block-start`). In horizontal writing mode the LTR appearance matches the previous physical top/bottom rules; under alternate writing modes those edges follow the block axis.
+
+### Breakpoint tokens
+
+`css/tokens/breakpoints.css` defines shared `@custom-media` aliases (for example `--tablet`). Compiled demos import this file so multiple components can share one named breakpoint. It is **not** imported into uncompiled `css/main.css`, because browsers do not yet support `@custom-media` natively.
+
+After changing a custom media definition in `breakpoints.css` (or any sheet that depends on it), run `pnpm build` so `dist/custom-media-queries.css` stays in sync. Include the generated `dist/custom-media-queries.css` when deploying to GitHub Pages—the deploy workflow copies the repo as-is and does not run the build.
 
 ## Themes
 
@@ -91,15 +106,19 @@ Use **trailing-slash directory URLs** for coursework and demos (for example `uni
 
 ## Local development and build
 
-This project uses **pnpm** and **Lightning CSS**.
+This project uses **pnpm**. Most pages load authored CSS directly from `css/`—no compilation step.
+
+**Lightning CSS** is only required for demos that depend on CSS features browsers do not yet support natively (for example custom media queries). Those demos keep authored source under `css/team-teaching/` and load a compiled sheet from `dist/`.
 
 ```bash
 pnpm install
 pnpm build
 ```
 
+`pnpm build` currently runs `build:custom-media`, which compiles `css/team-teaching/custom-media-queries.css` into `dist/custom-media-queries.css` with `--custom-media`, `--bundle`, and `--targets "defaults"`. That step expands `@media (--tablet)` aliases into standard media queries. Shared styles continue to load from `css/main.css` with no build step.
+
+Whenever you change `@custom-media` definitions or the Custom Media Queries demo source, run `pnpm build` again before previewing or deploying.
+
 Preview the site with a local static server from the repo root (for example `npx serve`), then open pages with trailing-slash paths.
 
-`pnpm build` bundles and minifies `css/main.css` into `dist/styles.css`. Live pages still load `css/main.css` (and any assignment/demo sheet). `dist/styles.css` is a build artifact, not the live homepage stylesheet.
-
-Commit `pnpm-lock.yaml` so dependency versions stay consistent.
+Commit `pnpm-lock.yaml` so dependency versions stay consistent. Commit the generated `dist/custom-media-queries.css` as well so GitHub Pages can serve the compiled demo stylesheet (the deploy workflow does not run `pnpm build`).

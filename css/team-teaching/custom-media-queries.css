@@ -1,0 +1,175 @@
+/*
+ * Custom Media Queries Team Teaching demo.
+ * Shared tokens, reset, base, shell, nav, and theme live in css/main.css.
+ * This sheet keeps only the three responsive examples and their presentation.
+ *
+ * Breakpoint aliases come from css/tokens/breakpoints.css via @custom-media.
+ * Each example still uses its own @media (--tablet) block so students can see
+ * multiple components sharing one named breakpoint.
+ */
+
+@import "../tokens/breakpoints.css";
+
+@layer components {
+    .page-header {
+        h1 {
+            color: var(--color-primary);
+        }
+
+        p {
+            color: var(--color-text-muted);
+            max-width: 42rem;
+        }
+    }
+
+    code {
+        font-family: var(--font-family-mono);
+        font-size: 0.9em;
+        color: var(--color-primary);
+    }
+
+    .cmq-section {
+        padding-bottom: var(--space-xl);
+        border-bottom: 1px solid var(--color-border);
+
+        &:last-child {
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        h2 {
+            color: var(--color-text);
+            margin-block-end: var(--space-sm);
+        }
+    }
+
+    .cmq-section-intro {
+        color: var(--color-text-muted);
+        max-width: 40rem;
+        margin-block-end: var(--space-md);
+    }
+
+    /* --- 1. Navigation: stacked by default --- */
+    .cmq-nav {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        padding: var(--space-md);
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md, 0.5rem);
+
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-sm, 0.25rem);
+            border: 1px solid transparent;
+
+            &:hover,
+            &:focus-visible {
+                color: var(--color-accent-hover);
+                background-color: color-mix(in oklch, var(--color-accent) 12%, transparent);
+            }
+
+            &:focus-visible {
+                outline: var(--outline-width, 2px) solid var(--color-focus);
+                outline-offset: 2px;
+            }
+        }
+    }
+
+    @media (--tablet) {
+        .cmq-nav {
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+    }
+
+    /* --- 2. Content Layout: stacked by default --- */
+    .cmq-layout {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .cmq-sidebar,
+    .cmq-main {
+        padding: var(--space-md);
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md, 0.5rem);
+
+        h3 {
+            color: var(--color-text);
+            margin-block-end: var(--space-sm);
+            font-size: 1.125rem;
+        }
+
+        p {
+            color: var(--color-text-muted);
+            margin: 0;
+        }
+    }
+
+    .cmq-sidebar {
+        border-inline-start: 4px solid var(--color-secondary-accent);
+    }
+
+    .cmq-main {
+        border-inline-start: 4px solid var(--color-accent);
+    }
+
+    @media (--tablet) {
+        .cmq-layout {
+            flex-direction: row;
+            align-items: stretch;
+        }
+
+        .cmq-sidebar {
+            flex: 0 0 12rem;
+        }
+
+        .cmq-main {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+    }
+
+    /* --- 3. Card Grid: one column by default --- */
+    .cmq-card-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+    .cmq-card {
+        padding: var(--space-md);
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md, 0.5rem);
+        border-block-start: 3px solid var(--color-accent);
+
+        &:nth-child(even) {
+            border-block-start-color: var(--color-secondary-accent);
+        }
+
+        h3 {
+            color: var(--color-text);
+            margin-block-end: var(--space-sm);
+            font-size: 1.125rem;
+        }
+
+        p {
+            color: var(--color-text-muted);
+            margin: 0;
+        }
+    }
+
+    @media (--tablet) {
+        .cmq-card-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}

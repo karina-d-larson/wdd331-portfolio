@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Media Queries</title>
+    <script src="../../js/theme-preference.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../dist/custom-media-queries.css">
+</head>
+<body class="page-shell">
+    <nav class="site-nav">
+        <a href="../../index.html">&larr; Home</a>
+        <details class="theme-menu">
+            <summary class="theme-control">
+                <span class="visually-hidden">Color scheme</span>
+            </summary>
+            <div class="theme-extra" role="group" aria-label="Choose color scheme">
+                <label class="theme-control theme-pick" data-theme-pick="light">
+                    <input name="theme-preference" type="radio" value="light">
+                    <span aria-hidden="true">&#9788;&#65039;</span>
+                    <span class="visually-hidden">Light</span>
+                </label>
+
+                <label class="theme-control theme-pick" data-theme-pick="system">
+                    <input name="theme-preference" type="radio" value="system">
+                    <span aria-hidden="true">&#9881;&#65039;</span>
+                    <span class="visually-hidden">System default</span>
+                </label>
+
+                <label class="theme-control theme-pick" data-theme-pick="dark">
+                    <input name="theme-preference" type="radio" value="dark">
+                    <span aria-hidden="true">&#127766;</span>
+                    <span class="visually-hidden">Dark</span>
+                </label>
+            </div>
+        </details>
+    </nav>
+
+    <header class="page-header">
+        <h1>Custom Media Queries</h1>
+        <p>
+            These three responsive examples share a single breakpoint defined using
+            <code>@custom-media</code>. Changing the breakpoint token and rebuilding
+            the CSS updates all three components without modifying their individual
+            styles.
+        </p>
+    </header>
+
+    <main>
+        <section class="cmq-section" id="cmq-navigation" aria-labelledby="cmq-nav-heading">
+            <h2 id="cmq-nav-heading">1. Navigation</h2>
+            <p class="cmq-section-intro">
+                Links stack vertically on smaller screens and switch to a horizontal
+                row at <code>48em</code>.
+            </p>
+            <nav class="cmq-nav" aria-label="Demo navigation">
+                <a href="#cmq-navigation">Overview</a>
+                <a href="#cmq-layout">Layout</a>
+                <a href="#cmq-cards">Cards</a>
+                <a href="#cmq-navigation">Resources</a>
+            </nav>
+        </section>
+
+        <section class="cmq-section" id="cmq-layout" aria-labelledby="cmq-layout-heading">
+            <h2 id="cmq-layout-heading">2. Content Layout</h2>
+            <p class="cmq-section-intro">
+                Sidebar and main content stack on smaller screens, then sit side by
+                side from <code>48em</code> up.
+            </p>
+            <div class="cmq-layout">
+                <aside class="cmq-sidebar">
+                    <h3>Sidebar</h3>
+                    <p>Supporting links, filters, or secondary notes live here.</p>
+                </aside>
+                <div class="cmq-main">
+                    <h3>Main Content</h3>
+                    <p>
+                        Primary reading and actions stay in this column. At the shared
+                        breakpoint, this area sits beside the sidebar instead of below
+                        it.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cmq-section" id="cmq-cards" aria-labelledby="cmq-cards-heading">
+            <h2 id="cmq-cards-heading">3. Card Grid</h2>
+            <p class="cmq-section-intro">
+                Four cards stay in a single column until <code>48em</code>, then form
+                a two-column grid.
+            </p>
+            <div class="cmq-card-grid">
+                <article class="cmq-card">
+                    <h3>Card One</h3>
+                    <p>Mobile-first base styles keep this in a single column.</p>
+                </article>
+                <article class="cmq-card">
+                    <h3>Card Two</h3>
+                    <p>The same breakpoint switches the grid to two columns.</p>
+                </article>
+                <article class="cmq-card">
+                    <h3>Card Three</h3>
+                    <p>Each example references the shared <code>--tablet</code> breakpoint.</p>
+                </article>
+                <article class="cmq-card">
+                    <h3>Card Four</h3>
+                    <p>One token change updates every component after rebuild.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

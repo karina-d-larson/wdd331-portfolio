@@ -17,6 +17,17 @@
 }
 
 @layer components {
+    /*
+     * Demo gradient pair from shared accents (theme-aware via light-dark tokens).
+     * A = secondary teal; B = primary purple.
+     */
+    #repeating-vs-tiled,
+    #gradient-patterns,
+    #animating-gradients {
+        --demo-gradient-a: var(--color-secondary-accent);
+        --demo-gradient-b: var(--color-accent);
+    }
+
     .page-header {
         h1 {
             color: var(--color-primary);
@@ -85,16 +96,16 @@
     .pattern-repeating {
         background-image: repeating-linear-gradient(
             0deg,
-            var(--color-primary) 0 10px,
-            transparent 10px 20px
+            var(--demo-gradient-a) 0 10px,
+            var(--demo-gradient-b) 10px 20px
         );
     }
 
     .pattern-tiled {
         background-image: linear-gradient(
             0deg,
-            var(--color-primary) 0 50%,
-            transparent 50% 100%
+            var(--demo-gradient-a) 0 50%,
+            var(--demo-gradient-b) 50% 100%
         );
         background-size: 20px 20px;
         background-repeat: repeat;
@@ -109,8 +120,8 @@
     .pattern-stripes {
         background-image: linear-gradient(
             0deg,
-            var(--color-primary) 0 50%,
-            transparent 50% 100%
+            var(--demo-gradient-a) 0 50%,
+            var(--demo-gradient-b) 50% 100%
         );
         background-size: var(--tile-size) var(--tile-size);
         background-repeat: repeat;
@@ -119,28 +130,30 @@
     .pattern-polka {
         background-image: radial-gradient(
             circle at center,
-            var(--color-primary) 0 25%,
-            transparent 26%
+            var(--demo-gradient-a) 0 25%,
+            var(--demo-gradient-b) 26%
         );
         background-size: var(--tile-size) var(--tile-size);
         background-repeat: repeat;
     }
 
     .pattern-checkerboard {
+        /* Transparent gaps reveal the second color; needed for the offset layer technique. */
+        background-color: var(--demo-gradient-b);
         background-image:
             linear-gradient(
                 45deg,
-                var(--color-primary) 25%,
+                var(--demo-gradient-a) 25%,
                 transparent 25%,
                 transparent 75%,
-                var(--color-primary) 75%
+                var(--demo-gradient-a) 75%
             ),
             linear-gradient(
                 45deg,
-                var(--color-primary) 25%,
+                var(--demo-gradient-a) 25%,
                 transparent 25%,
                 transparent 75%,
-                var(--color-primary) 75%
+                var(--demo-gradient-a) 75%
             );
         background-size: var(--tile-size) var(--tile-size);
         background-position:
@@ -150,9 +163,11 @@
     }
 
     .pattern-grid {
+        /* Transparent gaps let both axis layers show; fill uses the second color. */
+        background-color: var(--demo-gradient-b);
         background-image:
-            linear-gradient(var(--color-primary) 1px, transparent 1px),
-            linear-gradient(90deg, var(--color-primary) 1px, transparent 1px);
+            linear-gradient(var(--demo-gradient-a) 1px, transparent 1px),
+            linear-gradient(90deg, var(--demo-gradient-a) 1px, transparent 1px);
         background-size: var(--tile-size) var(--tile-size);
         background-repeat: repeat;
     }
@@ -163,8 +178,8 @@
     .pattern-transition {
         background-image: linear-gradient(
             0deg,
-            var(--color-primary),
-            var(--accent-400)
+            var(--demo-gradient-a),
+            var(--demo-gradient-b)
         );
         transition: background-image 2s ease;
 
@@ -172,8 +187,8 @@
         &:focus-visible {
             background-image: linear-gradient(
                 180deg,
-                var(--color-primary),
-                var(--accent-400)
+                var(--demo-gradient-a),
+                var(--demo-gradient-b)
             );
         }
 
@@ -187,8 +202,8 @@
         --unregistered-angle: 0deg;
         background-image: linear-gradient(
             var(--unregistered-angle, 0deg),
-            var(--color-primary),
-            var(--accent-400)
+            var(--demo-gradient-a),
+            var(--demo-gradient-b)
         );
         animation: animate-unregistered-angle 3s linear infinite alternate;
     }
@@ -196,8 +211,8 @@
     .pattern-registered {
         background-image: linear-gradient(
             var(--gradient-angle, 0deg),
-            var(--color-primary),
-            var(--accent-400)
+            var(--demo-gradient-a),
+            var(--demo-gradient-b)
         );
         animation: animate-gradient-angle 3s linear infinite alternate;
     }
