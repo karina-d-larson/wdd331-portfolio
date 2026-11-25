@@ -1,0 +1,32 @@
+/* Assignment-specific base overrides for Layered Components.
+   Shared reset/base live in css/base/* (loaded via css/main.css).
+   This file stays in the assignment base layer to preserve cascade-layer
+   architecture while only redeclaring intentional differences. */
+
+:is(h1, h2, h3) {
+    color: var(--color-text);
+    line-height: 1.25;
+    margin-bottom: var(--space-sm);
+}
+
+h1 {
+    /* Matches shared --font-size-h1 (2rem); margin differs from the :is() rule */
+    margin-bottom: var(--space-md);
+}
+
+h2 {
+    /* Shared h2 uses --font-size-h2 (1.35rem); this assignment uses 1.5rem */
+    font-size: 1.5rem;
+}
+
+h3 {
+    /* Shared h3 uses --font-size-h3 (1.15rem); this assignment uses 1.25rem */
+    font-size: 1.25rem;
+}
+
+a {
+    /* Extra link chrome beyond shared color / hover / focus-visible */
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.15em;
+    transition: color var(--transition-fast);
+}

@@ -16,7 +16,11 @@
     --max-width: 68rem;
 }
 
-/* ===================== RESET ==================== */
+/*
+ * Shared reset/base also load from css/base/* via css/main.css (layered).
+ * This unlayered reset must stay: it beats shared layered heading/paragraph
+ * margins and preserves this assignment's compact board rhythm.
+ */
 *,
 *::before,
 *::after {
@@ -25,33 +29,20 @@
     padding: 0;
 }
 
-/* ===================== BASE STYLES ==================== */
 body {
-    font-family: var(--font-body);
     font-size: var(--font-size-body);
-    color: var(--color-text);
-    background-color: var(--color-bg);
-    line-height: var(--line-height-body);
     padding: clamp(var(--space-md), 4vw, var(--space-xl));
     max-width: var(--max-width);
     margin-inline: auto;
 }
 
-a {
-    color: var(--color-primary);
-
-    &:hover {
-        color: var(--color-primary-hover);
-    }
-}
-
 /* ===================== NAVIGATION ==================== */
+/* Shared chrome: css/components/site-nav.css. Local overrides only. */
 .site-nav {
     margin-bottom: var(--space-lg);
 
     a {
         font-size: 0.9375rem;
-        text-decoration: none;
         font-weight: 500;
 
         &:hover {
@@ -77,7 +68,8 @@ a {
     }
 }
 
-/* ===================== CARD GROUP ==================== */
+/* ===================== ACTIVITY CARDS ==================== */
+/* Assignment-specific board cards (not shared .page-shell .card). */
 .card-group {
     margin-bottom: var(--space-xl);
 

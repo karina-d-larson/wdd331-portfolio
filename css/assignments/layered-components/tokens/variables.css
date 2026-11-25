@@ -1,0 +1,24 @@
+/* Non-color tokens for the Layered Components assignment.
+   Shared defaults live in css/tokens/variables.css.
+   Only intentional overrides for this assignment remain here. */
+:root {
+    /*
+     * Rem-based spacing scale for this assignment's layout rhythm.
+     * Numerically close to shared --spacing-* at a 16px root, but kept
+     * in rem so the page scales with the user's font size.
+     */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+
+    /* Richer stack than the shared --font-body alias */
+    --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    /*
+     * Shared --radius-md is 6px; this assignment uses 0.5rem (8px).
+     * --radius-sm matches shared (4px / 0.25rem) and is not redeclared.
+     */
+    --radius-md: 0.5rem;
+}

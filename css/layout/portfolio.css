@@ -1,11 +1,5 @@
-body {
-    padding: var(--space-lg);
-}
-
-main {
-    max-width: var(--max-width);
-    margin-inline: auto;
-}
+/* Homepage-only layout. Selectors match index.html only
+   (.intro / .course-work / .team-teaching) so assignment pages are unaffected. */
 
 .intro {
     margin-bottom: var(--space-xl);
@@ -19,6 +13,14 @@ main {
 }
 
 .course-work {
+    margin-bottom: var(--space-xl);
+
+    h2 {
+        margin-bottom: var(--space-md);
+    }
+}
+
+.team-teaching {
     h2 {
         margin-bottom: var(--space-md);
     }

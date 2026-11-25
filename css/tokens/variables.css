@@ -20,6 +20,7 @@
 
     /* Transitions */
     --transition-base: 0.2s ease;
+    --transition-fast: 150ms ease;
 
     /* Icons */
     --icon-size-sm: 24px;
@@ -28,8 +29,14 @@
     /* Focus */
     --outline-width: 2px;
 
-    /* Legacy spacing and type aliases */
+    /* Body type helpers */
+    --font-size-base: 1rem;
+    --font-size-body: 1rem;
+    --line-height-body: 1.6;
+
+    /* Legacy spacing and type aliases (--space-* and --spacing-* both kept) */
     --font-body: var(--font-family-sans);
+    --space-xs: var(--spacing-xs);
     --space-sm: var(--spacing-sm);
     --space-md: var(--spacing-md);
     --space-lg: var(--spacing-lg);

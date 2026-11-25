@@ -6,10 +6,14 @@
 @import url("base/reset.css") layer(base);
 @import url("base/elements.css") layer(base);
 
-@import url("layout/primary.css") layer(layout);
+@import url("layout/shell.css") layer(layout);
+@import url("layout/portfolio.css") layer(layout);
 
 @import url("components/assignment-cards.css") layer(components);
+@import url("components/cards.css") layer(components);
+@import url("components/buttons.css") layer(components);
+@import url("components/forms.css") layer(components);
 @import url("components/theme-toggle.css") layer(components);
-@import url("components/effects.css") layer(components);
+@import url("components/site-nav.css") layer(components);
 
 @import url("utilities/utilities.css") layer(utilities);

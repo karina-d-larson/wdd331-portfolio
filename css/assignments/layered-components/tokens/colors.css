@@ -1,0 +1,3 @@
+/* Shared root tokens (css/tokens/colors.css) supply the palette,
+   including --color-disabled. This tokens-layer file remains so the
+   Unit 2 cascade-layer architecture stays intact. */

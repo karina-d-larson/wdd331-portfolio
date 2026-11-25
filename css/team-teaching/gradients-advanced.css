@@ -1,0 +1,237 @@
+/*
+ * Advanced Gradients Team Teaching demo.
+ * Shared tokens, reset, base, shell, nav, and theme live in css/main.css.
+ * This sheet keeps only gradient examples and their presentation.
+ */
+
+/*
+ * @property descriptors:
+ * - syntax: which value types are allowed (and can be animated)
+ * - inherits: whether the property cascades to descendants
+ * - initial-value: fallback when unset; must match the declared syntax
+ */
+@property --gradient-angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@layer components {
+    .page-header {
+        h1 {
+            color: var(--color-primary);
+        }
+
+        p {
+            color: var(--color-text-muted);
+            max-width: 40rem;
+        }
+    }
+
+    code {
+        font-family: var(--font-family-mono);
+        font-size: 0.9em;
+        color: var(--color-primary);
+    }
+
+    .demo-section {
+        padding-bottom: var(--space-xl);
+        border-bottom: 1px solid var(--color-border);
+
+        &:last-child {
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+    }
+
+    .compare-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    @media (min-width: 40rem) {
+        .compare-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .gradient-example {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+
+        h3 {
+            font-size: 1.125rem;
+            line-height: 1.3;
+            color: var(--color-text);
+        }
+
+        p {
+            color: var(--color-text-muted);
+            font-size: 0.9375rem;
+        }
+    }
+
+    .pattern-swatch {
+        width: 100%;
+        height: 8rem;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        background-color: var(--color-surface);
+    }
+
+    /* Easy to find and tweak in DevTools */
+    .pattern-repeating {
+        background-image: repeating-linear-gradient(
+            0deg,
+            var(--color-primary) 0 10px,
+            transparent 10px 20px
+        );
+    }
+
+    .pattern-tiled {
+        background-image: linear-gradient(
+            0deg,
+            var(--color-primary) 0 50%,
+            transparent 50% 100%
+        );
+        background-size: 20px 20px;
+        background-repeat: repeat;
+    }
+
+    /* ===================== GRADIENT PATTERNS ==================== */
+    #gradient-patterns {
+        --tile-size: 24px;
+    }
+
+    /* Easy to find and tweak in DevTools */
+    .pattern-stripes {
+        background-image: linear-gradient(
+            0deg,
+            var(--color-primary) 0 50%,
+            transparent 50% 100%
+        );
+        background-size: var(--tile-size) var(--tile-size);
+        background-repeat: repeat;
+    }
+
+    .pattern-polka {
+        background-image: radial-gradient(
+            circle at center,
+            var(--color-primary) 0 25%,
+            transparent 26%
+        );
+        background-size: var(--tile-size) var(--tile-size);
+        background-repeat: repeat;
+    }
+
+    .pattern-checkerboard {
+        background-image:
+            linear-gradient(
+                45deg,
+                var(--color-primary) 25%,
+                transparent 25%,
+                transparent 75%,
+                var(--color-primary) 75%
+            ),
+            linear-gradient(
+                45deg,
+                var(--color-primary) 25%,
+                transparent 25%,
+                transparent 75%,
+                var(--color-primary) 75%
+            );
+        background-size: var(--tile-size) var(--tile-size);
+        background-position:
+            0 0,
+            calc(var(--tile-size) / 2) calc(var(--tile-size) / 2);
+        background-repeat: repeat;
+    }
+
+    .pattern-grid {
+        background-image:
+            linear-gradient(var(--color-primary) 1px, transparent 1px),
+            linear-gradient(90deg, var(--color-primary) 1px, transparent 1px);
+        background-size: var(--tile-size) var(--tile-size);
+        background-repeat: repeat;
+    }
+
+    /* ===================== ANIMATING GRADIENTS ==================== */
+
+    /* Easy to find and tweak in DevTools */
+    .pattern-transition {
+        background-image: linear-gradient(
+            0deg,
+            var(--color-primary),
+            var(--accent-400)
+        );
+        transition: background-image 2s ease;
+
+        &:hover,
+        &:focus-visible {
+            background-image: linear-gradient(
+                180deg,
+                var(--color-primary),
+                var(--accent-400)
+            );
+        }
+
+        &:focus-visible {
+            outline: var(--outline-width) solid var(--color-focus);
+            outline-offset: 2px;
+        }
+    }
+
+    .pattern-unregistered {
+        --unregistered-angle: 0deg;
+        background-image: linear-gradient(
+            var(--unregistered-angle, 0deg),
+            var(--color-primary),
+            var(--accent-400)
+        );
+        animation: animate-unregistered-angle 3s linear infinite alternate;
+    }
+
+    .pattern-registered {
+        background-image: linear-gradient(
+            var(--gradient-angle, 0deg),
+            var(--color-primary),
+            var(--accent-400)
+        );
+        animation: animate-gradient-angle 3s linear infinite alternate;
+    }
+}
+
+@keyframes animate-unregistered-angle {
+    from {
+        --unregistered-angle: 0deg;
+    }
+
+    to {
+        --unregistered-angle: 180deg;
+    }
+}
+
+@keyframes animate-gradient-angle {
+    from {
+        --gradient-angle: 0deg;
+    }
+
+    to {
+        --gradient-angle: 180deg;
+    }
+}
+
+@layer components {
+    @media (prefers-reduced-motion: reduce) {
+        #animating-gradients .pattern-transition {
+            transition: none;
+        }
+
+        #animating-gradients .pattern-unregistered,
+        #animating-gradients .pattern-registered {
+            animation: none;
+        }
+    }
+}
