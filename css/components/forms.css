@@ -1,5 +1,5 @@
-/* Form components: .note-form, .form-field, inputs, textarea, select
-   Use native nesting. Add :focus-visible styles to all inputs. */
+/* Shared form controls for demos and assignments.
+   Classes: .note-form, .form-field (+ nested input/textarea/select) */
 
 .note-form {
     display: flex;

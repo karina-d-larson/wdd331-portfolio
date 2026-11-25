@@ -1,5 +1,0 @@
-/* Shared root tokens supply the palette.
-   This file only adds Unit 2 colors derived from those tokens. */
-:root {
-    --color-disabled: color-mix(in oklch, var(--color-text) 45%, var(--color-text-muted));
-}

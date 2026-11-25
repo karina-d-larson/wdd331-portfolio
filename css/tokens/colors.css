@@ -66,4 +66,7 @@ html {
     --color-primary-hover: var(--color-accent-hover);
     --color-focus: var(--color-accent);
     --color-background: var(--color-bg);
+
+    /* Derived semantic colors shared across assignments */
+    --color-disabled: color-mix(in oklch, var(--color-text) 45%, var(--color-text-muted));
 }

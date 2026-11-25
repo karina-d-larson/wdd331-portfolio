@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Gradients and @property</title>
+    <script src="../../js/theme-preference.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/team-teaching/gradients-advanced.css">
+</head>
+<body class="page-shell">
+    <nav class="site-nav">
+        <a href="../../index.html">&larr; Home</a>
+        <details class="theme-menu">
+            <summary class="theme-control">
+                <span class="visually-hidden">Color scheme</span>
+            </summary>
+            <div class="theme-extra" role="group" aria-label="Choose color scheme">
+                <label class="theme-control theme-pick" data-theme-pick="light">
+                    <input name="theme-preference" type="radio" value="light">
+                    <span aria-hidden="true">&#9788;&#65039;</span>
+                    <span class="visually-hidden">Light</span>
+                </label>
+
+                <label class="theme-control theme-pick" data-theme-pick="system">
+                    <input name="theme-preference" type="radio" value="system">
+                    <span aria-hidden="true">&#9881;&#65039;</span>
+                    <span class="visually-hidden">System default</span>
+                </label>
+
+                <label class="theme-control theme-pick" data-theme-pick="dark">
+                    <input name="theme-preference" type="radio" value="dark">
+                    <span aria-hidden="true">&#127766;</span>
+                    <span class="visually-hidden">Dark</span>
+                </label>
+            </div>
+        </details>
+    </nav>
+
+    <header class="page-header">
+        <h1>Advanced Gradients and @property</h1>
+        <p>
+            Explore repeating and tiled gradients, CSS-only patterns, and how
+            <code>@property</code> unlocks smooth gradient animations.
+        </p>
+    </header>
+
+    <main>
+        <section class="demo-section" id="repeating-vs-tiled">
+            <h2>Repeating vs. Tiled Gradients</h2>
+
+            <div class="compare-grid">
+                <article class="gradient-example">
+                    <h3>Repeating Gradient</h3>
+                    <div class="pattern-swatch pattern-repeating" aria-hidden="true"></div>
+                    <p>
+                        <code>repeating-linear-gradient()</code> repeats the pattern
+                        based on its color stop positions. Here, a 10px stripe and
+                        10px gap form a 20px cycle that continues across the element.
+                    </p>
+                </article>
+
+                <article class="gradient-example">
+                    <h3>Tiled Gradient</h3>
+                    <div class="pattern-swatch pattern-tiled" aria-hidden="true"></div>
+                    <p>
+                        A regular <code>linear-gradient()</code> defines a single tile
+                        with percentage-based stops. <code>background-size</code> sets
+                        the tile dimensions, and <code>background-repeat</code> tiles
+                        that unit across the element.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="demo-section" id="gradient-patterns">
+            <h2>Gradient Patterns</h2>
+
+            <div class="compare-grid">
+                <article class="gradient-example">
+                    <h3>Stripes</h3>
+                    <div class="pattern-swatch pattern-stripes" aria-hidden="true"></div>
+                    <p>
+                        A tiled <code>linear-gradient()</code> with hard color stops
+                        creates stripes. <code>--tile-size</code> sets how tall each
+                        stripe cycle is.
+                    </p>
+                </article>
+
+                <article class="gradient-example">
+                    <h3>Polka Dots</h3>
+                    <div class="pattern-swatch pattern-polka" aria-hidden="true"></div>
+                    <p>
+                        A tiled <code>radial-gradient()</code> draws a circle in each
+                        tile. Repeating that tile produces an even polka-dot field.
+                    </p>
+                </article>
+
+                <article class="gradient-example">
+                    <h3>Checkerboard</h3>
+                    <div class="pattern-swatch pattern-checkerboard" aria-hidden="true"></div>
+                    <p>
+                        Two identical diagonal linear gradients are layered and offset
+                        by half of <code>--tile-size</code> with <code>calc()</code>,
+                        filling in alternating squares.
+                    </p>
+                </article>
+
+                <article class="gradient-example">
+                    <h3>Grid Lines</h3>
+                    <div class="pattern-swatch pattern-grid" aria-hidden="true"></div>
+                    <p>
+                        Two perpendicular linear gradients—one horizontal, one
+                        vertical—stack to form a grid. Each line is one pixel thick
+                        within the tile.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="demo-section" id="animating-gradients">
+            <h2>Animating Gradients with @property</h2>
+
+            <div class="compare-grid">
+                <article class="gradient-example">
+                    <h3>Normal Gradient Transition</h3>
+                    <div
+                        class="pattern-swatch pattern-transition"
+                        tabindex="0"
+                        aria-label="Hover or focus to change gradient angle"
+                    ></div>
+                    <p>
+                        Transitioning <code>background-image</code> between two
+                        gradient angles snaps abruptly. Browsers cannot interpolate
+                        gradient functions as continuous values—hover or focus this
+                        swatch to see the jump.
+                    </p>
+                </article>
+
+                <article class="gradient-example">
+                    <h3>Unregistered Custom Property</h3>
+                    <div class="pattern-swatch pattern-unregistered" aria-hidden="true"></div>
+                    <p>
+                        An unregistered custom property can hold an angle, but it
+                        still switches discretely. Without <code>@property</code>,
+                        the browser treats each keyframe as a separate value and
+                        cannot interpolate between them.
+                    </p>
+                </article>
+
+                <article class="gradient-example">
+                    <h3>Registered Custom Property</h3>
+                    <div class="pattern-swatch pattern-registered" aria-hidden="true"></div>
+                    <p>
+                        Registering <code>--gradient-angle</code> as
+                        <code>&lt;angle&gt;</code> lets the browser interpolate the
+                        angle smoothly. The gradient rotates through intermediate
+                        values without transforming the element itself.
+                    </p>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

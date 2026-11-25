@@ -1,0 +1,9 @@
+/* Layered Components layout overrides.
+   Shared shell: css/layout/shell.css (.page-shell, main, page-header/footer).
+   This assignment uses a wider content column than shared --max-width (56rem). */
+
+main,
+.page-header,
+.page-footer {
+    max-width: 64rem;
+}

@@ -1,0 +1,37 @@
+/* Reusable page shell: gutters, content width, and optional full-height column.
+   Opt into the column shell with class="page-shell" on <body>
+   (Unit 2 and future Team Teaching demos). */
+
+body {
+    padding: var(--space-lg);
+}
+
+main {
+    max-width: var(--max-width);
+    width: 100%;
+    margin-inline: auto;
+}
+
+.page-header,
+.page-footer {
+    max-width: var(--max-width);
+    width: 100%;
+    margin-inline: auto;
+    padding: var(--space-lg) var(--space-md);
+}
+
+.page-shell {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    main {
+        flex: 1;
+        padding-inline: var(--space-md);
+    }
+
+    main > section {
+        margin-bottom: var(--space-xl);
+    }
+}

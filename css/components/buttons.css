@@ -1,5 +1,5 @@
-/* Button components: .btn, .primary, .secondary, disabled state
-   Use native nesting for pseudo-classes and modifiers. */
+/* Shared buttons for demos and assignments.
+   Classes: .button-group, .btn, .btn.primary, .btn.secondary */
 
 .button-group {
     display: flex;

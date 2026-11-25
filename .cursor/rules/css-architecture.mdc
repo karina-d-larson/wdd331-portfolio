@@ -1,0 +1,32 @@
+---
+description: WDD 331R portfolio CSS architecture, Team Teaching demos, and workflow constraints
+alwaysApply: true
+---
+
+# CSS consolidation rules
+
+## Architecture
+
+- Authored CSS lives only under root `css/`.
+- Shared styles load through `css/main.css`.
+- Assignment CSS → `css/assignments/`; Team Teaching CSS → `css/team-teaching/`.
+- Keep cascade layers: `tokens → base → layout → components → utilities`.
+- Reuse shared tokens, shell/layout, nav, cards, buttons, and forms; do not duplicate them.
+- Keep topic-specific styles on their own pages/sheets only.
+
+## New Team Teaching demos
+
+- Put HTML in the matching unit directory; CSS in `css/team-teaching/`.
+- Load `css/main.css` + the demo sheet; use `.page-shell`, shared nav, theme menu, and `js/theme-preference.js`.
+- Support light / dark / system via semantic color tokens (no hardcoded theme colors).
+- Use trailing-slash directory links.
+- Add finished demos to homepage Team Teaching + README only when asked.
+
+## Workflow
+
+- Do only the requested task; no unrelated refactors.
+- Preserve assignment requirements and behavior.
+- Prefer simple, readable CSS/HTML.
+- Before finishing implementation work: verify affected pages and run `pnpm build`.
+- Report changes, test results, and remaining issues.
+- Do not stage, commit, merge, push, reset, or switch branches without explicit permission.

@@ -12,64 +12,94 @@ Each week new pages are added and styles updated as I work through the course as
 ## Pages
 
 - [Home](index.html)
-- [Custom Properties and Nesting](unit-1/custom-properties/index.html)
-- [Layered Components](unit-2/layered-components/index.html)
-- [Visual Effects](unit-3/visual-effects/index.html)
+- [Custom Properties and Nesting](unit-1/custom-properties/)
+- [Layered Components](unit-2/layered-components/)
+- [Visual Effects](unit-3/visual-effects/)
+
+## Team Teaching
+
+- [Advanced Gradients and @property](unit-3/gradients-advanced/)
 
 ## CSS Architecture
 
-The root homepage styles are organized into cascade layers:
+All authored CSS lives under the root `css/` directory. Pages load shared styles from `css/main.css`, then any page-specific sheet they need.
 
 ```text
 css/
-├── base/
-│   ├── elements.css
-│   └── reset.css
-├── components/
-│   ├── assignment-cards.css
-│   └── theme-toggle.css
-├── layout/
-│   └── primary.css
-├── tokens/
+├── tokens/                 # Shared design tokens
 │   ├── colors.css
 │   └── variables.css
+├── base/                   # Reset + element defaults
+│   ├── reset.css
+│   └── elements.css
+├── layout/                 # Shared + homepage layout
+│   ├── shell.css           # Page shell, content width, page-header/footer
+│   └── portfolio.css       # Homepage-only sections
+├── components/             # Shared UI
+│   ├── assignment-cards.css
+│   ├── cards.css
+│   ├── buttons.css
+│   ├── forms.css
+│   ├── theme-toggle.css
+│   └── site-nav.css
 ├── utilities/
 │   └── utilities.css
-└── main.css
+├── assignments/            # Loaded only by coursework pages
+│   ├── custom-properties.css
+│   ├── visual-effects.css
+│   └── layered-components/
+├── team-teaching/          # Loaded only by Team Teaching demos
+│   └── gradients-advanced.css
+└── main.css                # Layer order + shared imports
 ```
 
-- `tokens` — shared design values such as colors, spacing, typography, radius, and shadows
-- `base` — reset and element-level styles
-- `layout` — overall page structure and spacing
-- `components` — reusable UI pieces such as assignment cards
-- `utilities` — small helper classes when needed
+### Cascade layers
 
-`css/main.css` declares the cascade layer order and imports these source files.
+`css/main.css` declares and imports layers in this order:
 
-## Color Tokens and Dark Mode
+`tokens → base → layout → components → utilities`
 
-The site supports Light, Dark, and System default.
+Shared tokens, reset/base, shell layout, navigation, theme controls, cards, buttons, and forms load through `main.css` on every page that includes it.
 
-- Shared color tokens live in `css/tokens/colors.css`.
-- Non-color design tokens live in `css/tokens/variables.css`.
-- Theme toggle styles live in `css/components/theme-toggle.css`.
-- `js/theme-preference.js` restores the choice on load and saves it in `localStorage`.
+### Assignment-specific styles
 
-The palette uses an OKLCH amethyst accent seed, an accent ramp built with `color-mix()`, and semantic colors set with `light-dark()`.
+Coursework pages add a second stylesheet only where needed:
 
-## Build
+- Unit 1 → `css/assignments/custom-properties.css`
+- Unit 2 → `css/assignments/layered-components/main.css`
+- Unit 3 → `css/assignments/visual-effects.css`
 
-This project uses **pnpm** as the package manager and **Lightning CSS** as the build tool.
+These sheets keep topic-specific or intentional overrides. They should not restate shared chrome already provided by `main.css`.
 
-After cloning the repository:
+### Team Teaching styles
+
+Demo pages load `css/main.css` plus a sheet under `css/team-teaching/`. Demo HTML lives in the matching unit directory (for example `unit-3/gradients-advanced/`). Demos reuse `.page-shell`, shared navigation, and the theme menu.
+
+## Themes
+
+The site supports **Light**, **Dark**, and **System** preferences.
+
+- Semantic colors and `light-dark()` values: `css/tokens/colors.css`
+- Theme UI: `css/components/theme-toggle.css`
+- Persistence: `js/theme-preference.js` (`localStorage`)
+
+Prefer semantic tokens (`--color-text`, `--color-primary`, `--color-surface`, and so on) instead of hardcoded light/dark colors.
+
+## URL convention
+
+Use **trailing-slash directory URLs** for coursework and demos (for example `unit-3/gradients-advanced/`) so relative assets resolve from the directory, not the parent folder.
+
+## Local development and build
+
+This project uses **pnpm** and **Lightning CSS**.
 
 ```bash
 pnpm install
 pnpm build
 ```
 
-`pnpm build` reads `css/main.css`, follows and bundles its imported source files, minifies the CSS, and writes the result to `dist/styles.css`.
+Preview the site with a local static server from the repo root (for example `npx serve`), then open pages with trailing-slash paths.
 
-`dist/styles.css` is the generated build artifact for this assignment. The live homepage still loads `css/main.css`. `dist/styles.css` is not the live homepage stylesheet.
+`pnpm build` bundles and minifies `css/main.css` into `dist/styles.css`. Live pages still load `css/main.css` (and any assignment/demo sheet). `dist/styles.css` is a build artifact, not the live homepage stylesheet.
 
 Commit `pnpm-lock.yaml` so dependency versions stay consistent.
