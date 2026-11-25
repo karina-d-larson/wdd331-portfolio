@@ -8,17 +8,18 @@ alwaysApply: true
 ## Architecture
 
 - Authored CSS lives only under root `css/`.
-- Shared styles load through `css/main.css`.
+- Shared styles load through `css/main.css` with no compilation step.
 - Assignment CSS → `css/assignments/`; Team Teaching CSS → `css/team-teaching/`.
 - Keep cascade layers: `tokens → base → layout → components → utilities`.
 - Reuse shared tokens, shell/layout, nav, cards, buttons, and forms; do not duplicate them.
 - Keep topic-specific styles on their own pages/sheets only.
 - When additional colors are needed, use the shared primary (`--color-accent`) and secondary (`--color-secondary-accent`) accent tokens; prefer existing semantic tokens and calculated color ramps over hardcoded colors. Do not introduce new color palettes unnecessarily. The secondary accent is an available option, not required in every demo.
+- Lightning CSS compilation is only for demos that need CSS features browsers do not support natively; keep authored source in `css/` and load the compiled sheet from `dist/` when required.
 
 ## New Team Teaching demos
 
 - Put HTML in the matching unit directory; CSS in `css/team-teaching/`.
-- Load `css/main.css` + the demo sheet; use `.page-shell`, shared nav, theme menu, and `js/theme-preference.js`.
+- Load `css/main.css` + the demo sheet (authored under `css/team-teaching/`, or `dist/` when a compile step is required); use `.page-shell`, shared nav, theme menu, and `js/theme-preference.js`.
 - Support light / dark / system via semantic color tokens (no hardcoded theme colors).
 - Use trailing-slash directory links.
 - Add finished demos to homepage Team Teaching + README only when asked.
@@ -28,6 +29,6 @@ alwaysApply: true
 - Do only the requested task; no unrelated refactors.
 - Preserve assignment requirements and behavior.
 - Prefer simple, readable CSS/HTML.
-- Before finishing implementation work: verify affected pages and run `pnpm build`.
+- Before finishing implementation work: verify affected pages and run `pnpm build` when the change touches a compiled demo or build scripts.
 - Report changes, test results, and remaining issues.
 - Do not stage, commit, merge, push, reset, or switch branches without explicit permission.

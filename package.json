@@ -4,7 +4,8 @@
   "description": "**Student:** Karina Larson   **Semester:** Fall 2026   **Live Site:** [View Site](https://karina-d-larson.github.io/wdd331-portfolio/)",
   "main": "index.js",
   "scripts": {
-    "build": "lightningcss --bundle --minify css/main.css -o dist/styles.css"
+    "build:custom-media": "lightningcss --custom-media --bundle --targets \"defaults\" css/team-teaching/custom-media-queries.css -o dist/custom-media-queries.css",
+    "build": "pnpm run build:custom-media"
   },
   "repository": {
     "type": "git",

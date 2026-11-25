@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logical Properties and Writing Modes</title>
+    <script src="../../js/theme-preference.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/team-teaching/logical-properties.css">
+</head>
+<body class="page-shell">
+    <nav class="site-nav">
+        <a href="../../index.html">&larr; Home</a>
+        <details class="theme-menu">
+            <summary class="theme-control">
+                <span class="visually-hidden">Color scheme</span>
+            </summary>
+            <div class="theme-extra" role="group" aria-label="Choose color scheme">
+                <label class="theme-control theme-pick" data-theme-pick="light">
+                    <input name="theme-preference" type="radio" value="light">
+                    <span aria-hidden="true">&#9788;&#65039;</span>
+                    <span class="visually-hidden">Light</span>
+                </label>
+
+                <label class="theme-control theme-pick" data-theme-pick="system">
+                    <input name="theme-preference" type="radio" value="system">
+                    <span aria-hidden="true">&#9881;&#65039;</span>
+                    <span class="visually-hidden">System default</span>
+                </label>
+
+                <label class="theme-control theme-pick" data-theme-pick="dark">
+                    <input name="theme-preference" type="radio" value="dark">
+                    <span aria-hidden="true">&#127766;</span>
+                    <span class="visually-hidden">Dark</span>
+                </label>
+            </div>
+        </details>
+    </nav>
+
+    <header class="page-header">
+        <h1>Logical Properties and Writing Modes</h1>
+        <p>
+            Compare physical CSS properties with their logical counterparts, and see
+            how writing modes redefine the inline and block axes.
+        </p>
+    </header>
+
+    <main>
+        <section class="lp-section" id="lp-intro" aria-labelledby="lp-intro-heading">
+            <h2 id="lp-intro-heading">1. Introduction</h2>
+            <p class="lp-section-intro">
+                Physical properties such as <code>margin-left</code>,
+                <code>padding-top</code>, and <code>border-right</code> always refer
+                to fixed screen directions. Logical properties such as
+                <code>margin-inline-start</code>, <code>padding-block-start</code>,
+                and <code>border-inline-end</code> follow the inline and block axes
+                of the current writing mode, so layouts adapt when direction or
+                orientation changes.
+            </p>
+        </section>
+
+        <section class="lp-section" id="lp-axes" aria-labelledby="lp-axes-heading">
+            <h2 id="lp-axes-heading">2. Understanding the Axes</h2>
+            <p class="lp-section-intro">
+                Every writing mode has an <strong>inline</strong> axis (the direction
+                text flows within a line) and a <strong>block</strong> axis (the
+                direction lines stack). Compare English (LTR) and Arabic (RTL): the
+                inline arrow reverses, while the block arrow still points top to bottom.
+            </p>
+
+            <div class="lp-axes-panel">
+                <article class="lp-axis-demo">
+                    <h3>English, left-to-right</h3>
+                    <div class="lp-axis-sample" lang="en" dir="ltr">
+                        <p class="lp-axis-text">
+                            The quick brown fox jumps over the lazy dog.
+                        </p>
+                        <div class="lp-axis-guides" dir="ltr" aria-hidden="true">
+                            <div class="lp-axis-guide lp-axis-guide--inline lp-axis-guide--ltr">
+                                <span class="lp-axis-guide-label">Inline</span>
+                                <span class="lp-axis-guide-arrow"></span>
+                                <span class="lp-axis-guide-end">LTR</span>
+                            </div>
+                            <div class="lp-axis-guide lp-axis-guide--block">
+                                <span class="lp-axis-guide-label">Block</span>
+                                <span class="lp-axis-guide-arrow"></span>
+                                <span class="lp-axis-guide-end">TB</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="lp-axis-demo">
+                    <h3>Arabic, right-to-left</h3>
+                    <div class="lp-axis-sample" lang="ar" dir="rtl">
+                        <p class="lp-axis-text">
+                            الثعلب البني السريع يقفز فوق الكلب الكسول.
+                        </p>
+                        <div class="lp-axis-guides" dir="ltr" aria-hidden="true">
+                            <div class="lp-axis-guide lp-axis-guide--inline lp-axis-guide--rtl">
+                                <span class="lp-axis-guide-label">Inline</span>
+                                <span class="lp-axis-guide-arrow"></span>
+                                <span class="lp-axis-guide-end">RTL</span>
+                            </div>
+                            <div class="lp-axis-guide lp-axis-guide--block">
+                                <span class="lp-axis-guide-label">Block</span>
+                                <span class="lp-axis-guide-arrow"></span>
+                                <span class="lp-axis-guide-end">TB</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="lp-section" id="lp-compare" aria-labelledby="lp-compare-heading">
+            <h2 id="lp-compare-heading">3. Physical vs. Logical Properties</h2>
+            <p class="lp-section-intro">
+                Each pair uses identical content and equivalent spacing values.
+                Physical examples use fixed-side properties; logical examples use
+                the matching inline and block properties. Switch direction below to
+                see only the logical examples adapt.
+            </p>
+
+            <div class="lp-dir-control" role="group" aria-labelledby="lp-dir-label">
+                <p id="lp-dir-label" class="lp-dir-label">Text direction</p>
+                <div class="lp-dir-options">
+                    <label class="lp-dir-option">
+                        <input id="lp-direction-ltr" type="radio" name="lp-direction" value="ltr" checked>
+                        <span>Left-to-right (LTR)</span>
+                    </label>
+                    <label class="lp-dir-option">
+                        <input id="lp-direction-rtl" type="radio" name="lp-direction" value="rtl">
+                        <span>Right-to-left (RTL)</span>
+                    </label>
+                </div>
+                <p class="lp-dir-status">
+                    Current <code>dir</code>:
+                    <output id="lp-dir-value" for="lp-direction-ltr lp-direction-rtl" aria-live="polite">ltr</output>
+                </p>
+            </div>
+
+            <div class="lp-compare-demo" dir="ltr">
+                <div class="lp-compare-group">
+                    <div class="lp-compare-meta" dir="ltr">
+                        <h3>Active navigation link</h3>
+                        <p class="lp-compare-note">
+                            Border accent and padding on the current page link.
+                        </p>
+                    </div>
+                    <div class="lp-compare-pair">
+                        <article class="lp-example">
+                            <div class="lp-example-meta" dir="ltr">
+                                <h4>Physical</h4>
+                                <ul class="lp-prop-list">
+                                    <li><code>border-left</code></li>
+                                    <li><code>padding-left</code></li>
+                                </ul>
+                            </div>
+                            <nav class="lp-demo-nav" data-lp-flow aria-label="Physical navigation example">
+                                <a href="#lp-compare">Overview</a>
+                                <a href="#lp-compare" class="lp-nav-link--physical" aria-current="page">Logical CSS</a>
+                                <a href="#lp-compare">Writing Modes</a>
+                            </nav>
+                        </article>
+                        <article class="lp-example">
+                            <div class="lp-example-meta" dir="ltr">
+                                <h4>Logical</h4>
+                                <ul class="lp-prop-list">
+                                    <li><code>border-inline-start</code></li>
+                                    <li><code>padding-inline-start</code></li>
+                                </ul>
+                            </div>
+                            <nav class="lp-demo-nav" data-lp-flow aria-label="Logical navigation example">
+                                <a href="#lp-compare">Overview</a>
+                                <a href="#lp-compare" class="lp-nav-link--logical" aria-current="page">Logical CSS</a>
+                                <a href="#lp-compare">Writing Modes</a>
+                            </nav>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="lp-compare-group">
+                    <div class="lp-compare-meta" dir="ltr">
+                        <h3>Card body spacing</h3>
+                        <p class="lp-compare-note">
+                            Asymmetric padding and a start-side indent on the card.
+                        </p>
+                    </div>
+                    <div class="lp-compare-pair">
+                        <article class="lp-example">
+                            <div class="lp-example-meta" dir="ltr">
+                                <h4>Physical</h4>
+                                <ul class="lp-prop-list">
+                                    <li><code>padding-top</code> / <code>padding-right</code> / <code>padding-bottom</code> / <code>padding-left</code></li>
+                                    <li><code>margin-left</code></li>
+                                </ul>
+                            </div>
+                            <div class="lp-card lp-card--physical" data-lp-flow>
+                                <h5>Study Notes</h5>
+                                <p>
+                                    Logical properties map spacing to the flow of text
+                                    instead of hard-coding left, right, top, and bottom.
+                                </p>
+                            </div>
+                        </article>
+                        <article class="lp-example">
+                            <div class="lp-example-meta" dir="ltr">
+                                <h4>Logical</h4>
+                                <ul class="lp-prop-list">
+                                    <li><code>padding-block</code> / <code>padding-inline</code></li>
+                                    <li><code>margin-inline-start</code></li>
+                                </ul>
+                            </div>
+                            <div class="lp-card lp-card--logical" data-lp-flow>
+                                <h5>Study Notes</h5>
+                                <p>
+                                    Logical properties map spacing to the flow of text
+                                    instead of hard-coding left, right, top, and bottom.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="lp-compare-group">
+                    <div class="lp-compare-meta" dir="ltr">
+                        <h3>Centered, constrained paragraph</h3>
+                        <p class="lp-compare-note">
+                            Constrained measure centered with auto margins; text aligns
+                            to the physical left or logical start.
+                        </p>
+                    </div>
+                    <div class="lp-compare-pair">
+                        <article class="lp-example">
+                            <div class="lp-example-meta" dir="ltr">
+                                <h4>Physical</h4>
+                                <ul class="lp-prop-list">
+                                    <li><code>max-width</code></li>
+                                    <li><code>margin-left: auto</code> / <code>margin-right: auto</code></li>
+                                    <li><code>text-align: left</code></li>
+                                </ul>
+                            </div>
+                            <p class="lp-paragraph lp-paragraph--physical" data-lp-flow>
+                                A short paragraph stays readable when its measure is
+                                constrained and its text aligns to a fixed or flow-relative side.
+                            </p>
+                        </article>
+                        <article class="lp-example">
+                            <div class="lp-example-meta" dir="ltr">
+                                <h4>Logical</h4>
+                                <ul class="lp-prop-list">
+                                    <li><code>max-inline-size</code></li>
+                                    <li><code>margin-inline: auto</code></li>
+                                    <li><code>text-align: start</code></li>
+                                </ul>
+                            </div>
+                            <p class="lp-paragraph lp-paragraph--logical" data-lp-flow>
+                                A short paragraph stays readable when its measure is
+                                constrained and its text aligns to a fixed or flow-relative side.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lp-section" id="lp-writing-modes" aria-labelledby="lp-writing-modes-heading">
+            <h2 id="lp-writing-modes-heading">4. Vertical Writing Modes</h2>
+            <p class="lp-section-intro">
+                The same logical sizing (<code>inline-size</code> /
+                <code>block-size</code>) and a
+                <code>border-inline-start</code> accent are applied to each sample.
+                As <code>writing-mode</code> changes, those logical edges map to
+                different physical sides.
+            </p>
+
+            <div class="lp-writing-grid">
+                <article class="lp-writing-example">
+                    <div class="lp-writing-meta">
+                        <h3>Horizontal (<code>horizontal-tb</code>)</h3>
+                        <ul class="lp-prop-list">
+                            <li><code>writing-mode: horizontal-tb</code></li>
+                            <li><code>inline-size: 11rem</code></li>
+                            <li><code>block-size: 14rem</code></li>
+                            <li><code>border-inline-start: 4px solid &hellip;</code></li>
+                        </ul>
+                    </div>
+                    <div
+                        class="lp-writing-sample lp-writing-sample--horizontal"
+                        lang="en"
+                    >
+                        <p>
+                            Lines progress top to bottom. Text flows along the
+                            horizontal inline axis from left to right.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="lp-writing-example">
+                    <div class="lp-writing-meta">
+                        <h3>Vertical right-to-left (<code>vertical-rl</code>)</h3>
+                        <ul class="lp-prop-list">
+                            <li><code>writing-mode: vertical-rl</code></li>
+                            <li><code>inline-size: 11rem</code></li>
+                            <li><code>block-size: 14rem</code></li>
+                            <li><code>border-inline-start: 4px solid &hellip;</code></li>
+                        </ul>
+                    </div>
+                    <div
+                        class="lp-writing-sample lp-writing-sample--vertical-rl"
+                        lang="ja"
+                    >
+                        <p>
+                            縦書きでは文字が上から下へ進み、行は右から左へ進みます。論理的な寸法は書字方向に従います。
+                        </p>
+                    </div>
+                </article>
+
+                <article class="lp-writing-example">
+                    <div class="lp-writing-meta">
+                        <h3>Vertical left-to-right (<code>vertical-lr</code>)</h3>
+                        <ul class="lp-prop-list">
+                            <li><code>writing-mode: vertical-lr</code></li>
+                            <li><code>inline-size: 11rem</code></li>
+                            <li><code>block-size: 14rem</code></li>
+                            <li><code>border-inline-start: 4px solid &hellip;</code></li>
+                        </ul>
+                    </div>
+                    <div
+                        class="lp-writing-sample lp-writing-sample--vertical-lr"
+                        lang="zh-Hans"
+                    >
+                        <p>
+                            在垂直从左到右的书写模式中，字符从上到下排列，行从左向右推进。逻辑尺寸随书写模式变化。
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <p>Logical Properties and Writing Modes &mdash; WDD 331R Team Teaching demo.</p>
+    </footer>
+
+    <script src="../../js/team-teaching/logical-properties.js"></script>
+</body>
+</html>
